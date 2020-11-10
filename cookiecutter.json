@@ -1,3 +1,4 @@
 {
-    "project_name": "Custom CloudFormation Resource project name"
+    "project_name": "Custom CloudFormation Resource project name",
+    "resource_type": "A type for the Custom Resource (e.g: MyResourceTypeName)"
 }

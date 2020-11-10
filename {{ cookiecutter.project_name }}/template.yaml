@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+    {{ cookiecutter.project_name }}
+Globals:
+    Function:
+        Timeout: 5
+        Runtime: python3.8
+Resources:
+    CustomResourceFunction:
+        Type: AWS::Serverless::Function 
+        Properties:
+            Handler: custom_resource.lambda_handler
+            CodeUri: source
+            Description: "Lambda function for {{ cookiecutter.resource_type }} custom CloudFormation resource"
+            # Policies: # Example inline policy
+            #     - Version: "2012-10-17"
+            #     Statement:
+            #         - Effect: "Allow"
+            #         Action:
+            #             - "ssm:GetParameter"
+            #         Resource:
+            #             - "*"
+            Tags:
+                Name: cfn-{{ cookiecutter.resource_type }}
+
+    # Sample policy to add additional permissions to your Lambda
+    CustomResourceFunctionAdditionalPermission:
+        Type: "AWS::IAM::Policy"
+        Properties:
+            PolicyName: "root"
+            PolicyDocument:
+                Version: "2012-10-17"
+                Statement:
+                    -
+                        Effect: "Allow"
+                        Action: "ssm:GetParameters"
+                        Resource: "*"
+            Roles:
+                - !Ref CustomResourceFunctionRole # Sample policy to demonstrate Implicit IAM Role created with SAM
+
+Outputs:
+    CustomResourceFunctionArn:
+      Description: "Custom Resource Lambda Function ARN"
+      Value: !GetAtt CustomResourceFunction.Arn
