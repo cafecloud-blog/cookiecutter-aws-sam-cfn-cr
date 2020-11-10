@@ -36,6 +36,18 @@ Resources:
                         Effect: "Allow"
                         Action: "ssm:GetParameters"
                         Resource: "*"
+                    -
+                        Effect: "Allow"
+                        Action: "events:PutRule"
+                        Resource: "*"
+                    -
+                        Effect: "Allow"
+                        Action: "lambda:AddPermission"
+                        Resource: "*"
+                    -
+                        Effect: "Allow"
+                        Action: "events:PutTargets"
+                        Resource: "*"
             Roles:
                 - !Ref CustomResourceFunctionRole # Sample policy to demonstrate Implicit IAM Role created with SAM
 
