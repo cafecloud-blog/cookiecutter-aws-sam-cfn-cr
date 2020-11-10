@@ -31,6 +31,7 @@ def create(event, context):
     helper.Data.update({"test": "testdata"})
 
     # use the custom resource_helper module to invoke any re-useable logic here
+    logging.info("Will invoke cfn_resource_helper")
     resource_helper.cfn_resource_helper()
 
     # To return an error to cloudformation you raise an exception:
