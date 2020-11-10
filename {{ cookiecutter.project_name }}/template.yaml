@@ -48,6 +48,10 @@ Resources:
                         Effect: "Allow"
                         Action: "events:PutTargets"
                         Resource: "*"
+                    -
+                        Effect: "Allow"
+                        Action: "events:RemoveTargets"
+                        Resource: "*"
             Roles:
                 - !Ref CustomResourceFunctionRole # Sample policy to demonstrate Implicit IAM Role created with SAM
 
