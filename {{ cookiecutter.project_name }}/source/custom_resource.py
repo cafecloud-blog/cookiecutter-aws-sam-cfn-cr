@@ -57,6 +57,13 @@ def delete(event, context):
     # Delete never returns anything.
     # Should not fail if the underlying resources are already deleted.
 
+@helper.poll_create
+def poll_create(event, context):
+    logger.info("Polling during the Creation")
+    # Return a resource id or True to indicate that creation is complete.
+    # if True is returned an id will be generated
+    return True
+
 
 def lambda_handler(event, context):
     helper(event, context)
