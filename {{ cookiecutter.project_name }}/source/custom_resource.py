@@ -1,6 +1,7 @@
 from __future__ import print_function
 from crhelper import CfnResource
 import logging
+import resource_helper
 
 logger = logging.getLogger(__name__)
 # Initialise the helper, all inputs are optional
@@ -9,7 +10,7 @@ helper = CfnResource(json_logging=False,
                      boto_level='CRITICAL')
 
 try:
-    # Init code for the custom 
+    # Init code for the custom resource
     pass
 except Exception as e:
     helper.init_failure(e)
@@ -28,6 +29,9 @@ def create(event, context):
     # If poll is enabled data is placed into poll event as
     # event['CrHelperData']
     helper.Data.update({"test": "testdata"})
+
+    # use the custom resource_helper module to invoke any re-useable logic here
+    resource_helper.cfn_resource_helper()
 
     # To return an error to cloudformation you raise an exception:
     if not helper.Data.get("test"):
