@@ -6,7 +6,10 @@ of an [AWS CloudFormation Custom Resource]
 From inside the project root directory, install the project dependencies using [pipenv](https://pipenv.pypa.io/en/latest/#install-pipenv-today)
 
 ```bash
+# install
 pipenv install --dev
+# then activate the env
+pipenv shell
 ```
 
 Build the source project with the [sam cli](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
